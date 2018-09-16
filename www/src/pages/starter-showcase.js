@@ -7,9 +7,8 @@ class ShowcasePage extends Component {
   render() {
     const data = this.props.data
     const location = this.props.location
-    const history = this.props.history
 
-    return <ShowcaseView data={data} location={location} history={history} />
+    return <ShowcaseView data={data} location={location} />
   }
 }
 
@@ -22,9 +21,7 @@ export const showcaseQuery = graphql`
         node {
           name
           childImageSharp {
-            fluid(maxWidth: 280, maxHeight: 230) {
-              ...GatsbyImageSharpFluid
-            }
+            ...ShowcaseThumbnailFragment_item
           }
         }
       }

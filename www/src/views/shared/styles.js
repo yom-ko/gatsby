@@ -1,7 +1,9 @@
-import { options, /* rhythm, scale, */ rhythm } from "../../utils/typography"
+import typography, { options, rhythm, scale } from "../../utils/typography"
 import presets, { colors } from "../../utils/presets"
 import { style } from "glamor"
 import hex2rgba from "hex2rgba"
+
+const { curveDefault, speedDefault } = presets.animation
 
 const styles = {
   featuredSitesCard: style({
@@ -24,16 +26,15 @@ const styles = {
     display: `flex`,
     flexWrap: `wrap`,
     padding: rhythm(3 / 4),
-    justifyContent: `center`,
-    [presets.Desktop]: {
-      justifyContent: `flex-start`,
-    },
+    justifyContent: `space-evenly`,
   },
   showcaseItem: {
     display: `flex`,
     flexDirection: `column`,
     margin: rhythm(3 / 4),
-    width: 282,
+    minWidth: 259,//shows 3 items/row on windows > 1200px wide
+    maxWidth: 350,
+    flex: `1 0 0`,
     position: `relative`,
   },
   featuredItem: {
@@ -91,12 +92,29 @@ const styles = {
       },
     },
   },
-  sticky: {
-    paddingTop: rhythm(options.blockMarginBottom),
-    position: `sticky`,
-    top: 0,
+  loadMoreButton: {
+    alignItems: `center`,
+    display: `flex`,
+    flexFlow: `row wrap`,
+    margin: `0 auto ${rhythm(3)}`,
+    padding: `${rhythm(1 / 3)} ${rhythm(3)}`,
     [presets.Desktop]: {
-      top: `calc(${presets.headerHeight} - 1px)`,
+      margin: `0 auto ${rhythm(2 / 2)}`,
+    },
+  },
+  sticky: {
+    position: `sticky`,
+    // We need the -1px here to work around a weird issue on Chrome
+    // where the sticky element is consistently positioned 1px too far down,
+    // leaving a nasty gap that the page content peeks through.
+    // FWIW the problem is only present on the "Site Showcase" index page,
+    // not the "Starter Showcase" index page; if the "Featured Sites" block
+    // is removed, the problem goes away. I tried removing elements in the
+    // "Featured Sites" content block, but no success—only removing the entire block
+    // resolves the issue.
+    top: `calc(${presets.bannerHeight} - 1px)`,
+    [presets.Desktop]: {
+      top: `calc(${presets.headerHeight} + ${presets.bannerHeight} - 1px)`,
     },
   },
   scrollbar: {
@@ -131,6 +149,36 @@ const styles = {
   noLinkUnderline: {
     borderBottom: `none !important`, // i know i know
     boxShadow: `none !important`, // but people really want this
+  },
+  meta: {
+    ...scale(-1 / 5),
+    alignItems: `baseline`,
+    "&&": {
+      color: colors.gray.bright,
+    },
+  },
+  searchInput: {
+    appearance: `none`,
+    backgroundColor: `transparent`,
+    border: 0,
+    borderRadius: presets.radiusLg,
+    color: colors.gatsby,
+    paddingTop: rhythm(1 / 8),
+    paddingRight: rhythm(1 / 4),
+    paddingBottom: rhythm(1 / 8),
+    paddingLeft: rhythm(1),
+    overflow: `hidden`,
+    fontFamily: typography.options.headerFontFamily.join(`,`),
+    transition: `width ${speedDefault} ${curveDefault}, background-color ${speedDefault} ${curveDefault}`,
+    width: `6.8rem`,
+    "&::placeholder": {
+      color: colors.lilac,
+    },
+    "&:focus": {
+      outline: `none`,
+      width: `9rem`,
+      background: colors.ui.light,
+    },
   },
 }
 

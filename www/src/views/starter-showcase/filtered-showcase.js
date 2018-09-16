@@ -110,7 +110,8 @@ export default class FilteredShowcase extends Component {
               },
             }}
           >
-            Filter & Refine{` `}
+            Filter & Refine
+            {` `}
             <span css={{ marginLeft: `auto`, opacity: 0.5 }}>
               <MdFilterList />
             </span>
@@ -118,6 +119,11 @@ export default class FilteredShowcase extends Component {
           <div
             css={{
               paddingLeft: rhythm(3 / 4),
+              height: `calc(100vh - ((${presets.headerHeight} * 2) + ${
+                presets.bannerHeight
+              }))`,
+              display: `flex`,
+              flexDirection: `column`,
             }}
           >
             {(filters.size > 0 || urlState.s.length > 0) && ( // search is a filter too https://gatsbyjs.slack.com/archives/CB4V648ET/p1529224551000008
@@ -195,7 +201,6 @@ export default class FilteredShowcase extends Component {
               background: `rgba(255,255,255,0.98)`,
               paddingLeft: `${rhythm(3 / 4)}`,
               paddingRight: `${rhythm(3 / 4)}`,
-              paddingBottom: rhythm(options.blockMarginBottom),
               zIndex: 1,
               borderBottom: `1px solid ${colors.ui.light}`,
             }}
@@ -328,15 +333,7 @@ export default class FilteredShowcase extends Component {
             <button
               css={{
                 ...styles.button,
-                display: `block`,
-                marginBottom: rhythm(options.blockMarginBottom * 5),
-                marginTop: rhythm(options.blockMarginBottom * 2),
-                marginLeft: `auto`,
-                marginRight: `auto`,
-                [presets.Desktop]: {
-                  marginLeft: rhythm(6 / 4),
-                  marginRight: rhythm(6 / 4),
-                },
+                ...styles.loadMoreButton
               }}
               onClick={() => {
                 this.setState({ sitesToShow: this.state.sitesToShow + 15 })

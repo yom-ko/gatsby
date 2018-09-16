@@ -1,6 +1,5 @@
 import React from "react"
 import Helmet from "react-helmet"
-// import { OutboundLink } from "gatsby-plugin-google-analytics"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 
@@ -9,6 +8,7 @@ import Layout from "../components/layout"
 import ShareMenu from "../components/share-menu"
 import presets, { colors } from "../utils/presets"
 import { /*typography, */ rhythm, scale, options } from "../utils/typography"
+import sharedStyles from "../views/shared/styles"
 import MdLaunch from "react-icons/lib/md/launch"
 import GithubIcon from "react-icons/lib/fa/github"
 
@@ -109,7 +109,8 @@ class StarterTemplate extends React.Component {
                 }}
               >
                 {starterShowcase.owner.login}
-              </a>{` `}
+              </a>
+              {` `}
               <span>/</span>
               <div>
                 <h1 css={{ margin: 0, display: `inline-block` }}>
@@ -118,7 +119,8 @@ class StarterTemplate extends React.Component {
                 <span css={{ marginLeft: 20 }}>
                   <span role="img" aria-label="star">
                     ⭐
-                  </span>{` `}
+                  </span>
+                  {` `}
                   {starterShowcase.stars}
                 </span>
               </div>
@@ -270,7 +272,7 @@ class StarterTemplate extends React.Component {
                   fluid={imageSharp.childImageSharp.fluid}
                   alt={`Screenshot of ${imageSharp.name}`}
                   css={{
-                    ...styles.screenshot,
+                    ...sharedStyles.screenshot,
                   }}
                 />
               )}
@@ -320,7 +322,9 @@ class StarterTemplate extends React.Component {
               <div>
                 {frontmatter.features ? (
                   <ul css={{ marginTop: 0 }}>
-                    {frontmatter.features.map((f, i) => <li key={i}>{f}</li>)}
+                    {frontmatter.features.map((f, i) => (
+                      <li key={i}>{f}</li>
+                    ))}
                   </ul>
                 ) : (
                   `No features`
@@ -364,11 +368,10 @@ class StarterTemplate extends React.Component {
                               marginBottom: `1rem`,
                             }}
                           >
-                            {` `}
                             <a href={`https://npm.im/${dep}`}>
+                              {`${dep} `}
                               <FaExtLink />
-                            </a>{` `}
-                            {dep}
+                            </a>
                           </div>
                         )
                     )}

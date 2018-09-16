@@ -5,6 +5,7 @@ const {
   GraphQLInt,
   GraphQLEnumType,
   GraphQLJSON,
+  GraphQLBoolean,
 } = require(`gatsby/graphql`)
 const Remark = require(`remark`)
 const select = require(`unist-util-select`)
@@ -73,11 +74,17 @@ module.exports = (
 
   return new Promise((resolve, reject) => {
     // Setup Remark.
-    let remark = new Remark().data(`settings`, {
-      commonmark: true,
-      footnotes: true,
-      pedantic: true,
-    })
+    const { commonmark = true, footnotes = true, pedantic = true, gfm = true, blocks } = pluginOptions
+    const remarkOptions = {
+      gfm,
+      commonmark,
+      footnotes,
+      pedantic,
+    }
+    if (_.isArray(blocks)) {
+      remarkOptions.blocks = blocks
+    }
+    let remark = new Remark().data(`settings`, remarkOptions)
 
     for (let plugin of pluginOptions.plugins) {
       const requiredPlugin = require(plugin.resolve)
@@ -346,8 +353,12 @@ module.exports = (
             type: GraphQLInt,
             defaultValue: 140,
           },
+          truncate: {
+            type: GraphQLBoolean,
+            defaultValue: false,
+          },
         },
-        resolve(markdownNode, { pruneLength }) {
+        resolve(markdownNode, { pruneLength, truncate }) {
           if (markdownNode.excerpt) {
             return Promise.resolve(markdownNode.excerpt)
           }
@@ -359,8 +370,13 @@ module.exports = (
               }
               return
             })
-
-            return prune(excerptNodes.join(` `), pruneLength, `…`)
+            if (!truncate) {
+              return prune(excerptNodes.join(` `), pruneLength, `…`)
+            }
+            return _.truncate(excerptNodes.join(` `), {
+              length: pruneLength,
+              omission: `…`,
+            })
           })
         },
       },

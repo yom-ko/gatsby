@@ -15,7 +15,7 @@ It’s not necessary to be an expert with these already — if you’re not, don
 - **React**: A code library (built with JavaScript) for building user interfaces. It’s the framework that Gatsby uses to build pages and structure content.
 - **GraphQL**: A query language; A programming language that allows you to pull data into your website. It’s the interface that Gatsby uses for managing site data.
 
-> 💡 (Optional!) For a comprehensive introduction to what a website is, HTML, and CSS, check out “[**Building your first web page**](https://learn.shayhowe.com/html-css/building-your-first-web-page/)”. It’s a great place to start learning about the web, from scratch. For a more hands-on introduction to [**HTML**](https://www.codecademy.com/learn/introduction-to-javascript), [**CSS**](https://www.codecademy.com/learn/learn-css) and [**JavaScript**](https://www.codecademy.com/learn/learn-html), check out the tutorials from Codecademy. [**React**](https://reactjs.org/tutorial/tutorial.html) and [**GraphQL**](http://graphql.org/graphql-js/) also have their own introductory tutorials.
+> 💡 (Optional!) For a comprehensive introduction to what a website is, HTML, and CSS, check out “[**Building your first web page**](https://learn.shayhowe.com/html-css/building-your-first-web-page/)”. It’s a great place to start learning about the web, from scratch. For a more hands-on introduction to [**HTML**](https://www.codecademy.com/learn/learn-html), [**CSS**](https://www.codecademy.com/learn/learn-css) and [**JavaScript**](https://www.codecademy.com/learn/introduction-to-javascript), check out the tutorials from Codecademy. [**React**](https://reactjs.org/tutorial/tutorial.html) and [**GraphQL**](http://graphql.org/graphql-js/) also have their own introductory tutorials.
 
 ## Familiarize with command line
 
@@ -29,11 +29,11 @@ Take a moment to locate and open up the command line interface (CLI) for your co
 
 Node.js is an environment that can run JavaScript code. Gatsby is built with Node.js. To get up and running with Gatsby, you’ll need to have a recent version installed on your computer.
 
-**⌚ Download Node.js**
+### ⌚ Download Node.js
 
 Visit the [**Node.js site**](https://nodejs.org/) and follow the instructions to download and install the recommended version for your operating system. Once you have followed the installation steps, make sure everything was installed properly:
 
-**✋ Check your Node.js installation**
+### ✋ Check your Node.js installation
 
 1.  Open up your terminal.
 2.  Run `node --version`. (If you’re new to the command line, “run `command`” means “type `node --version` in the command prompt, and hit the Enter key”. From here on, this is what we mean by “run `command`”).
@@ -59,7 +59,7 @@ npm has three distinct components: the npm website, the npm registry, and the np
 
 The Gatsby CLI tool lets you quickly create new Gatsby-powered sites, and run commands for developing Gatsby sites. It is a published npm package. You can install the Gatsby CLI from the npm registry, using the npm CLI.
 
-**✋ Install the Gatsby CLI tool**
+### ✋ Install the Gatsby CLI tool
 
 1.  Navigate to the terminal.
 2.  Run `npm install --global gatsby-cli`.
@@ -76,7 +76,7 @@ npm install --global gatsby-cli
 - When installing npm packages, you can install them globally, or in a specific project. (We’ll learn about the latter, later). The `--global` flag signals that we want the first option, to install globally. This means our package will be available to us on our computer, outside of the context of a specific project.
 - `gatsby-cli` is the exact name our desired package is registered with on the [**npm registry**](https://www.npmjs.com/package/gatsby-cli).
 
-**✋ Check your Gatsby CLI installation**
+### ✋ Check your Gatsby CLI installation
 
 1.  Open up your terminal.
 2.  Run `gatsby --version`.
@@ -90,14 +90,17 @@ If successfully installed, running `gatsby --version` should return a version nu
 
 Now let’s use the gatsby-cli tool to create your first Gatsby site. Using the tool, you can use “starters”, or partially built sites with some default configuration, to help you get moving faster on creating a certain type of site. The “Hello World” starter we’ll be using here is a starter with the bare essentials needed for a [Gatsby](/) site.
 
-**✋ Create a Gatsby site**
+### ✋ Create a Gatsby site
 
 1.  Open up your terminal.
-2.  Run `gatsby new hello-world https://github.com/gatsbyjs/gatsby-starter-hello-world#v2`. (_Note: Depending on your download speed, the amount of time this takes will vary_).
+2.  Run `gatsby new hello-world https://github.com/gatsbyjs/gatsby-starter-hello-world#v2`. (_Note: Depending on your download speed, the amount of time this takes will vary. For brevity's sake, the gif below was paused during part of the install_).
 3.  Run `cd hello-world`.
 4.  Run `gatsby develop`.
 
-![Create Hello World site](03-create-site.gif)
+<video controls="controls" autoplay="true" loop="true">
+  <source type="video/mp4" src="./03-create-site.mp4"></source>
+  <p>Sorry! You browser doesn't support this video.</p>
+</video>
 
 What just happened?
 
@@ -108,13 +111,13 @@ gatsby new hello-world https://github.com/gatsbyjs/gatsby-starter-hello-world
 - Starting with `gatsby` says, ‘hey, we want to use the gatsby-cli tool!’
 - `new` is a gatsby command to create a new Gatsby project.
 - Here, `hello-world` is an arbitrary title — you could pick anything. The CLI tool will place the code for your new site in a new folder called “hello-world”.
-- Lastly, the Github URL specified points to a code repository that holds the starter code you want to use. If you aren't familiar yet with git and Github, you can [learn more here]([**Try Git: Git Tutorial**](https://try.github.io/).
+- Lastly, the Github URL specified points to a code repository that holds the starter code you want to use. If you aren't familiar yet with git and Github, you can [learn more here](https://try.github.io/).
 
 ```bash
 cd hello-world
 ```
 
-- This says ‘I want to change directories (`cd`) to this other subfolder called “hello-world”. Whenever you want to run any commands for your site, you need to be in the context for that site (aka, your terminal needs to be pointed at the directory where your site code lives).
+- This says 'I want to change directories (`cd`) to the “hello-world” subfolder'. Whenever you want to run any commands for your site, you need to be in the context for that site (aka, your terminal needs to be pointed at the directory where your site code lives).
 
 ```bash
 gatsby develop
@@ -122,7 +125,7 @@ gatsby develop
 
 - This command starts a development server. You will be able to see and interact with your new site in a development environment — local (on your computer, not published to the internet).
 
-**✋ View your site locally**
+### ✋ View your site locally
 
 Open up a new tab in your browser and navigate to [**http://localhost:8000**](http://localhost:8000/).
 
@@ -136,17 +139,21 @@ You’ll be able to visit the site locally at [**_http://localhost:8000_**](http
 
 A code editor is a program designed specifically for editing computer code. There are many great ones out there; If you haven't worked with a code editor before, we recommend the editor used throughout this tutorial -- [**VS Code**](https://code.visualstudio.com/).
 
-**⌚ Download VS Code**
+### ✋ Download VS Code
 
 Visit the [VS code site](https://code.visualstudio.com/#alt-downloads), and download the version appropriate for your platform.
 
-## Set up Prettier
+### ✋ Install Prettier plugin
 
-[Prettier](https://github.com/prettier/prettier) is a tool that helps format your code and keep it consistent.
+We also recommend using [Prettier](https://github.com/prettier/prettier) -- Prettier is a tool that helps format your code, keeping it consistent (and helping to avoid errors!).
 
-**⌚ Install Prettier**
+You can use Prettier directly in your editor using the [Prettier VS Code plugin](https://github.com/prettier/prettier-vscode):
 
-Visit the [**Prettier site**](https://prettier.io/) and follow the instructions to install.
+1.  Open the extensions view on VS Code (View => Extensions)
+2.  Search for "Prettier - Code formatter"
+3.  Click "Install". After installation you'll be prompted to restart VS Code to enable the extension.
+
+> 💡 If you're not using VS Code, check out the Prettier docs for [install instructions](https://prettier.io/docs/en/install.html) or [other editor integrations](https://prettier.io/docs/en/editors.html).
 
 ## ➡️ What’s Next?
 
