@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import Layout from "../components/layout"
 import Container from "../components/container"
 import PageWithPluginSearchBar from "../components/page-with-plugin-searchbar"
+import Unbird from "../components/unbird"
 import { Link } from "gatsby"
 import logo from "../monogram.svg"
 import { rhythm, options } from "../utils/typography"
@@ -60,13 +61,20 @@ class Plugins extends Component {
                 }}
               >
                 Please use the search bar to find plugins that will make your
-                blazing fast site even more awesome. If you{`'`}d like to create
-                your own plugin, see the
+                blazing fast site even more awesome. If you
+                {`'`}d like to create your own plugin, see the
                 {` `}
                 <Link to="/docs/plugin-authoring/">Plugin Authoring</Link> page
-                in the docs!
+                in the docs! To learn more about Gatsby plugins, visit the
+                {` `}
+                <Link to="/docs/plugins">plugins doc page</Link>.
               </p>
             </div>
+            <Unbird
+              dataSetId="5c1ac24b4a828a169b6c235c"
+              publicKey="oZwK1Uy9i4PVy5EpAQiXiZr0uVG6Xt1q"
+              feedbackPrompt="Have feedback on the Plugin Library?"
+            />
           </Container>
         </PageWithPluginSearchBar>
       </Layout>

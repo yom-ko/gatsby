@@ -68,11 +68,11 @@ export type LoaderUtils = {
 }
 
 /**
- * Utils that prodcue webpack rule objects
+ * Utils that produce webpack rule objects
  */
 export type RuleUtils = {
   /**
-   * Handles Javascript compilation via babel
+   * Handles JavaScript compilation via babel
    */
   js: RuleFactory<*>,
   yaml: RuleFactory<*>,
@@ -282,7 +282,7 @@ module.exports = async ({
   const rules = {}
 
   /**
-   * Javascript loader via babel, excludes node_modules
+   * JavaScript loader via babel, excludes node_modules
    */
   {
     let js = (options = {}) => {
@@ -294,6 +294,25 @@ module.exports = async ({
     }
 
     rules.js = js
+  }
+
+  /**
+   * mjs loader:
+   * webpack 4 has issues automatically dealing with
+   * the .mjs extension, thus we need to explicitly
+   * add this rule to use the default webpack js loader
+   */
+  {
+    let mjs = (options = {}) => {
+      return {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: `javascript/auto`,
+        ...options,
+      }
+    }
+
+    rules.mjs = mjs
   }
 
   {
@@ -416,7 +435,7 @@ module.exports = async ({
   const plugins = { ...builtinPlugins }
 
   /**
-   * Minify javascript code without regard for IE8. Attempts
+   * Minify JavaScript code without regard for IE8. Attempts
    * to parallelize the work to save time. Generally only add in Production
    */
   plugins.minifyJs = ({ terserOptions, ...options } = {}) =>
@@ -426,11 +445,19 @@ module.exports = async ({
       exclude: /\.min\.js/,
       sourceMap: true,
       terserOptions: {
-        compress: {
-          drop_console: true,
-        },
-        ecma: 8,
         ie8: false,
+        mangle: {
+          safari10: true,
+        },
+        parse: {
+          ecma: 8,
+        },
+        compress: {
+          ecma: 5,
+        },
+        output: {
+          ecma: 5,
+        },
         ...terserOptions,
       },
       ...options,
